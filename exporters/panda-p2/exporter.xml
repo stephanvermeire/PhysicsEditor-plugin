@@ -1,0 +1,93 @@
+<exporter>
+	<name>!panda-p2</name>
+	<displayName>panda-p2 (JSON)</displayName>
+    <description>Exporter panda.js + P2, JSON</description>
+	<version>1.0</version>
+	<yAxisDirection>down</yAxisDirection>
+	<physicsEngine>box2D</physicsEngine>
+	<template>panda-p2.json</template>
+	<fileExtension>json</fileExtension>
+	<anchorPoint>
+		<enabled>no</enabled>
+	</anchorPoint>
+	<origin>
+        <type>fixed</type>
+	    <relX>0.0</relX>
+		<relY>1.0</relY>
+    </origin>
+    <supportsCircles>yes</supportsCircles>
+	<global>
+	</global>
+	<body>
+        <parameter>
+            <name>mass</name>
+            <displayName>mass</displayName>
+            <type>float</type>
+            <min>-1000</min>
+            <max>1000</max>
+            <default>2</default>
+        </parameter>
+
+        <parameter>
+            <name>gravityScale</name>
+            <displayName>gravityScale</displayName>
+            <type>float</type>
+            <min>-10</min>
+            <max>10</max>
+            <default>1</default>
+        </parameter>
+
+        <parameter>
+            <name>damping</name>
+            <displayName>damping</displayName>
+            <type>float</type>
+            <min>0</min>
+            <max>10</max>
+            <default>0</default>
+        </parameter>
+
+        <parameter>
+            <name>angularDamping</name>
+            <displayName>angularDamping</displayName>
+            <type>float</type>
+            <min>0</min>
+            <max>10</max>
+            <default>0</default>
+        </parameter>
+	</body>
+	<fixture>
+        <parameter>
+            <name>sensor</name>
+            <displayName>sensor</displayName>
+            <description>If set the physial </description>
+            <type>bool</type>
+            <default>false</default>
+        </parameter>
+
+        <parameter>
+            <name>filter_bitfield</name>
+            <type>bitfield</type>
+            <size>16</size>
+        </parameter>
+
+        <parameter>
+            <name>filter_categoryBits</name>
+            <displayName>Cat.</displayName>
+            <description>Collision category</description>
+            <shortDescription>Collision category</shortDescription>
+            <type>uint16</type>
+            <default>1</default>
+            <bitfield>yes</bitfield>
+        </parameter>
+        <parameter>
+            <name>filter_maskBits</name>
+            <displayName>Mask</displayName>
+            <description>Collision mask</description>
+            <shortDescription>Collision mask</shortDescription>
+            <type>uint16</type>
+            <default>65535</default>
+            <bitfield>yes</bitfield>
+        </parameter>
+    </fixture>
+</exporter>
+

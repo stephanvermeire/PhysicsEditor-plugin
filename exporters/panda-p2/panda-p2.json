@@ -1,0 +1,20 @@
+{ {% for body in bodies %}
+	{% if not forloop.first %}, {% endif %}
+	"{{body.name}}": {
+		"mass": {{body.mass}}, 
+		"gravityScale": {{body.gravityScale}}, 
+		"damping": {{body.damping}}, 
+		"angularDamping": {{body.angularDamping}}, 
+    	"shapes": [{% for fixture in body.fixtures %}{% if not forloop.first %} ,{% endif %}
+			{
+				"type": "{{fixture.type}}", {% if fixture.sensor %}
+				"sensor": true, {% endif %}
+				"collisionGroup": {{fixture.filter_categoryBits}}, 
+				"collisionMask": {{fixture.filter_maskBits}},
+				{% if fixture.isCircle %}"radius": {{fixture.radius}},
+				"center": {"x": {{fixture.center.x}}, "y": {{fixture.center.y}} }
+				{% else %}"polygon": [ {% for point in fixture.hull %} {% if not forloop.first %}, {% endif %} [{{point.x}}, {{point.y}}] {% endfor %} ]{% endif %}
+			}{% endfor %}
+		]
+	}{% endfor %}
+}
