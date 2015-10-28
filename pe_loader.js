@@ -2,6 +2,7 @@ game.module(
 	'plugins.pe_loader'
 )
 .require(
+	'engine.core',
 	'plugins.p2'
 )
 .body(function() {
@@ -81,7 +82,7 @@ game.module(
 	//load the settings for the body from a JSON that is generataed in PhysicsEditor (https://www.codeandweb.com/physicseditor)
 	game.Body.prototype.fromJSON = function(settings) {
 	    // Remove all shapes
-	    for(var i=this.shapes.length; i>=0; --i){
+	    for(var i=this.shapes.length - 1; i>=0; --i){
 	        this.removeShape(this.shapes[i]);
 	    }
 		//Add shape. Currently only a single circle or polygon are supported
@@ -124,16 +125,13 @@ game.module(
 		if(typeof settings.gravityScale !== "undefined"){this.gravityScale = settings.gravityScale;}
 		if(typeof settings.mass !== "undefined"){this.mass = settings.mass;}
 		if(!this.mass){
-	        this.type = this.STATIC;
+	        this.type = p2.Body.DYNAMIC;
 	    } 
 	    else {
-	        this.type = this.DYNAMIC;
+	        this.type = p2.Body.DYNAMIC;
 	    }
 	    this.updateMassProperties();
 	};
 	
 	
 });
-
-
-
